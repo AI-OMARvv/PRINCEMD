@@ -1,0 +1,30 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main  # أو الفرع الذي تريد تشغيل الـ Action عليه، مثل 'main' أو 'develop'
+  pull_request:
+    branches:
+      - main  # أو الفرع الذي تريد تشغيل الـ Action عليه، مثل 'main' أو 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2  # يقوم بسحب الشيفرة المصدرية من GitHub
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # يمكنك تحديد الإصدار الذي تريده من Node.js
+
+    - name: Install dependencies
+      run: |
+        npm install  # تثبيت التبعيات الموجودة في package.json
+
+    - name: Run npm start
+      run: |
+        npm start  # تشغيل البوت باستخدام npm start
