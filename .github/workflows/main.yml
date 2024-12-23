@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bot:
+    image: node:16  # استخدام صورة Node.js
+    container_name: bot_container
+    working_dir: /app
+    volumes:
+      - ./bot:/app  # ربط مجلد المشروع المحلي إلى الحاوية
+    command: >
+      bash -c "apt-get update && apt-get install -y ffmpeg && npm install && npm start"  # تثبيت ffmpeg وتثبيت التبعيات وتشغيل البوت
+    environment:
+      - NODE_ENV=production  # متغيرات البيئة
+    ports:
+      - "3000:3000"  # تعديل المنفذ حسب الحاجة
